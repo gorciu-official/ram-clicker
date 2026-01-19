@@ -1,0 +1,82 @@
+:root {
+    --separator-color: #1f0f0f; 
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: white;
+    font-family: monospace;
+    font-size: 16px;
+}
+
+h1, h1 * {
+    font-size: 30px;
+}
+
+.root {
+    width: 100dvw;
+    height: 100dvh;
+    background-color: black;
+    display: flex;
+}
+
+.left, .middle {
+    border-right: 5px solid var(--separator-color);
+}
+
+.middle {
+    flex-grow: 1;
+}
+
+.left, .right {
+    position: relative;
+    min-width: 350px;
+    max-width: 350px;
+}
+
+.left .ram-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    background-image: radial-gradient(#051327, #090124, #00010e);
+}
+
+.left img.ram-main-button {
+    width: 70%;
+    cursor: pointer;
+}
+
+.left .counting-ram {
+    position: absolute;
+    top: 20px;
+    text-align: center;
+    width: 100%;
+}
+
+.row {
+    display: flex;
+    gap: 10px;
+}
+
+.ascend-info {
+    border-top: 5px solid var(--separator-color);
+    border-bottom: 5px solid var(--separator-color);
+    padding: 10px;
+    background-color: #2b1a1a;
+}
+
+.ascend-info .row {
+    gap: 75px;
+}
+
+.ascend-info .row div:has(p) {
+    max-width: 75%;
+}
+
+.upgrade {
+    padding: 10px;
+    border-bottom: 5px solid var(--separator-color);
+    background-color: #091a13;
+}
