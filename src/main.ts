@@ -22,9 +22,16 @@ let upgrades: Building[] = [
     {
         name: "Cursor",
         desc: "Autoclicks one bit per 10 seconds",
-        base_price: 10,
+        base_price: 15,
         how_much_owned: 0,
         how_much_gives: 0.1
+    },
+    {
+        name: "Floppy drive",
+        desc: "More things to store in the RAM",
+        base_price: 100,
+        how_much_owned: 0,
+        how_much_gives: 1
     }
 ];
 
@@ -33,8 +40,15 @@ for (const upgrade of upgrades) {
     upgrade_element.classList.add('upgrade');
     upgrade_element.innerHTML = `
         <h2>${upgrade.name}</h2>
-        <p>${upgrade.desc} | for <span class="upgrade-price">${upgrade.base_price}</span></p>
+        <p>${upgrade.desc} | for <span class="upgrade-price">${formatDigit(upgrade.base_price)}</span></p>
     `;
+    const upgrade_price_wrapper = upgrade_element.querySelector('.upgrade-price')!;
+    upgrade_element.addEventListener('click', () => {
+        if (ram_count <= (upgrade.base_price * (1 + (0.1 * upgrade.how_much_owned)))) return alert('Not anough money');
+        ram_count -= (upgrade.base_price * (1 + (0.1 * upgrade.how_much_owned)));
+        upgrade.how_much_owned += 1;
+        upgrade_price_wrapper.innerHTML = formatDigit((upgrade.base_price * (1 + (0.1 * upgrade.how_much_owned))));
+    });
     upgrades_wrapper.appendChild(upgrade_element);
 }
 

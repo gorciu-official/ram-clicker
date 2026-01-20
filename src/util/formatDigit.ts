@@ -20,5 +20,5 @@ export function formatDigit(bits: number): string {
         unitIndex++
     }
 
-    return `${value % 1 === 0 ? value : value.toFixed(3)} ${units[unitIndex]}`
+    return `${value % 1 === 0 ? value : value.toFixed(1)} ${units[unitIndex]}`
 }
