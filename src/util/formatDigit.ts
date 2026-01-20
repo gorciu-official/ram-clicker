@@ -10,15 +10,20 @@ export function formatDigit(bits: number): string {
         'EB',
         'ZB',
         'YB'
-    ]
+    ];
 
-    let value = bits
-    let unitIndex = 0
+    let value = bits;
+    let unitIndex = 0;
 
-    while (value >= 1024 && unitIndex < units.length - 1) {
-        value /= 1024
-        unitIndex++
+    if (value >= 8) {
+        value /= 8;
+        unitIndex = 1;
     }
 
-    return `${value % 1 === 0 ? value : value.toFixed(1)} ${units[unitIndex]}`
+    while (value >= 1024 && unitIndex < units.length - 1) {
+        value /= 1024;
+        unitIndex++;
+    }
+
+    return `${value % 1 === 0 ? value : value.toFixed(1)} ${units[unitIndex]}`;
 }
