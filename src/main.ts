@@ -35,6 +35,15 @@ let upgrades: Building[] = [
     }
 ];
 
+if (localStorage.getItem('gamedata')) {
+    let gamedata = JSON.parse(localStorage.getItem('gamedata'));
+    upgrades = gamedata.upgrades ?? upgrades;
+    total_ram = gamedata.total_ram ?? total_ram;
+    ram_count = gamedata.ram_count ?? ram_count;
+    total_ram_ascention = gamedata.total_ram_ascention ?? total_ram_ascention;
+    ram_gen = gamedata.ram_gen;
+}
+
 for (const upgrade of upgrades) {
     const upgrade_element = document.createElement('div');
     upgrade_element.classList.add('upgrade');
@@ -71,3 +80,13 @@ setInterval(() => {
 ram_button.addEventListener('click', () => {
     addRam(1);
 });
+
+setInterval(() => {
+    window.localStorage.setItem('gamedata', JSON.stringify({
+        total_ram,
+        ram_count,
+        total_ram_ascention,
+        ram_gen,
+        upgrades
+    }, undefined, 0));
+}, 10_000);
